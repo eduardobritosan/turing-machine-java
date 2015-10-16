@@ -1,0 +1,14 @@
+p i f d
+a b c
+a b c #
+p
+#
+f
+p b p b R
+p c p c R
+p a i a R
+p # f # L
+i b i b R
+i c i c R
+i # d # L
+i a p a R

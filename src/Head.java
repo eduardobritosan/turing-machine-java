@@ -1,14 +1,12 @@
 
 public class Head {
-	private static Integer MOVEMENT = 2;
+	private static Integer MOVEMENT = 1;
 	private Integer tapeIndex;
+	
 	public Head() {
-		setTapeIndex(0);
+		setTapeIndex(10);
 	}
 	
-	public Head(Integer tapeIndex) {
-		setTapeIndex(tapeIndex);
-	}
 	/**
 	 * @return the tapeIndex
 	 */
@@ -18,7 +16,7 @@ public class Head {
 	/**
 	 * @param tapeIndex the tapeIndex to set
 	 */
-	public void setTapeIndex(Integer tapeIndex) {
+	private void setTapeIndex(Integer tapeIndex) {
 		this.tapeIndex = tapeIndex;
 	}
 	

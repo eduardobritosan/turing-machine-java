@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 
 /**
  * 
@@ -26,11 +27,13 @@ public class Tape {
 	
 	private void parseStringToTape(String entryString, String blank){
 		ArrayList<String> listString = new ArrayList<String>();
-		listString.add(blank);
-		listString.add(blank);
+		for (int i = 0; i < 10; i++) {
+			listString.add(blank);
+		}
 		listString.addAll(Arrays.asList(entryString.split("")));
-		listString.add(blank);
-		listString.add(blank);
+		for (int i = 0; i < 10; i++) {
+			listString.add(blank);
+		}
 		setInputTape(listString);
 	}
 
@@ -60,6 +63,30 @@ public class Tape {
 	public Integer size(){
 		return getInputTape().size();
 	}
+	
+	public boolean delete(String elementToRemove, Integer desiredIndex){
+		Integer watchdog = 0;
+		Iterator<String> iter=inputTape.iterator();
+		while(iter.hasNext()){
+		    String o=iter.next();
+		    if(o.equals(elementToRemove) && watchdog == desiredIndex){
+		        iter.remove();
+		        return true;
+		    }
+		    watchdog++;
+		}
+		return false;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Tape [inputTape=" + inputTape + "]";
+	}
+	
+	
 	
 
 }

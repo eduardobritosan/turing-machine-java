@@ -17,8 +17,9 @@ public class ParserTM extends Parser {
 	/**
 	 * @param filename
 	 */
-	public ParserTM(String filename) {
+	public ParserTM(String filename, TuringMachine tm) {
 		super(filename);
+		insertParsedDataTM(tm);
 	}
 	
 	private void insertParsedDataTM(TuringMachine tm){
@@ -44,6 +45,8 @@ public class ParserTM extends Parser {
 			deltaHash.put(getStates().get(j), deltaArray);
 			deltaArray = new ArrayList<Delta>();
 		}
+		tm.update(statesHash, new Alphabet(getSigma()), new Alphabet(getTau()), 
+				getStartState(), getStackBase(), getFinalState(), deltaHash, statesHash.get(getStartState()), new Tape(), new Head());
 	}
 	
 	

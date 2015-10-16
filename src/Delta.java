@@ -4,9 +4,9 @@ import java.util.StringTokenizer;
 public class Delta {
 	private String initialState;
 	private String expectedInputString;
-	private String expectedStackString;
 	private String nextState;
-	private String nextElementToPushStack;
+	private String elementToWrite;
+	private String movement;
 	
 	
 	
@@ -18,13 +18,13 @@ public class Delta {
 	 * @param nextElementToPushStack
 	 */
 	public Delta(String initialState, String expectedInputString,
-			String expectedStackString, String nextState,
-			String nextElementToPushStack) {
+			String nextState, String elementToWrite,
+			String movement) {
 		this.initialState = initialState;
 		this.expectedInputString = expectedInputString;
-		this.expectedStackString = expectedStackString;
 		this.nextState = nextState;
-		this.nextElementToPushStack = nextElementToPushStack;
+		this.elementToWrite = elementToWrite;
+		this.movement = movement;
 	}
 	/**
 	 * 
@@ -34,10 +34,9 @@ public class Delta {
 		StringTokenizer tokenizer = new StringTokenizer(unparsedTransition);
 		setInitialState(tokenizer.nextToken());
 		setExpectedInputString(tokenizer.nextToken());
-		setExpectedStackString(tokenizer.nextToken());
 		setNextState(tokenizer.nextToken());
-		this.nextElementToPushStack = new String();
-		setNextElementToPushStack(tokenizer.nextToken());
+		setElementToWrite(tokenizer.nextToken());
+		setMovement(tokenizer.nextToken());
 		Integer p = 0;
 	}
 	/**
@@ -67,15 +66,6 @@ public class Delta {
 	/**
 	 * @return the expectedStackString
 	 */
-	public String getExpectedStackString() {
-		return expectedStackString;
-	}
-	/**
-	 * @param expectedStackString the expectedStackString to set
-	 */
-	public void setExpectedStackString(String expectedStackString) {
-		this.expectedStackString = expectedStackString;
-	}
 	/**
 	 * @return the nextState
 	 */
@@ -91,14 +81,29 @@ public class Delta {
 	/**
 	 * @return the nextElementToPushStack
 	 */
-	public String getNextElementToPushStack() {
-		return nextElementToPushStack;
+	/**
+	 * @return the elementToWrite
+	 */
+	public String getElementToWrite() {
+		return elementToWrite;
 	}
 	/**
-	 * @param nextElementToPushStack the nextElementToPushStack to set
+	 * @param elementToWrite the elementToWrite to set
 	 */
-	public void setNextElementToPushStack(String nextElementToPushStack) {
-		this.nextElementToPushStack = nextElementToPushStack;
+	public void setElementToWrite(String elementToWrite) {
+		this.elementToWrite = elementToWrite;
+	}
+	/**
+	 * @return the movement
+	 */
+	public String getMovement() {
+		return movement;
+	}
+	/**
+	 * @param movement the movement to set
+	 */
+	public void setMovement(String movement) {
+		this.movement = movement;
 	}
 	
 	

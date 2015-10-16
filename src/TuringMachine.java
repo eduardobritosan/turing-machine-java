@@ -45,6 +45,12 @@ public class TuringMachine {
 			String startingState, String blank, ArrayList<String> finalStates,
 			HashMap<String, ArrayList<Delta>> allDelta, State currentState, Tape tape,
 			Head head){
+			update(allStates, sigma, tau, startingState, blank, finalStates, allDelta, currentState, tape, head);
+	}
+	public void update(HashMap<String, State> allStates, Alphabet sigma, Alphabet tau, 
+			String startingState, String blank, ArrayList<String> finalStates,
+			HashMap<String, ArrayList<Delta>> allDelta, State currentState, Tape tape,
+			Head head){
 		setAllStates(allStates);
 		setSigma(sigma);
 		setTau(tau);
@@ -56,7 +62,7 @@ public class TuringMachine {
 		setTape(tape);
 		setHead(head);
 	}
-	public boolean run(String tape){
+	public boolean run(String tape, boolean print){
 		boolean watcher = true;
 		setTape(new Tape(tape, getBlank()));
 		while(watcher != false){
@@ -64,9 +70,15 @@ public class TuringMachine {
 		}
 		if (getCurrentState().isFinalState()) {
 			System.out.println("Cadena aceptada");
+			if (print) {
+				System.out.println(getTape().toString());
+			}
 			return true;
 		}
 		System.out.println("Cadena no aceptada");
+		if (print) {
+			System.out.println(getTape().toString());
+		}
 		return false;
 	}
 	private boolean nextMove(){
@@ -75,13 +87,15 @@ public class TuringMachine {
 		for (int i = 0; i <  transitionArray.size(); i++) {
 			if (getTape().read(getHead().getTapeIndex()).equals(transitionArray.get(i).getExpectedInputString()) 
 					&& hasMoved == false) {
-				if (transitionArray.get(i).getNextElementToPushStack().equals("L")) {
-					getTape().write(transitionArray.get(i).getNextElementToPushStack(), getHead().getTapeIndex());
+				if (transitionArray.get(i).getMovement().equals("L")) {
+					getTape().delete(transitionArray.get(i).getExpectedInputString(), getHead().getTapeIndex());
+					getTape().write(transitionArray.get(i).getElementToWrite(), getHead().getTapeIndex());
 					getHead().moveLeft();
 
 				}
-				else if (transitionArray.get(i).getNextElementToPushStack().equals("R")) {
-					getTape().write(transitionArray.get(i).getNextElementToPushStack(), getHead().getTapeIndex());
+				else if (transitionArray.get(i).getMovement().equals("R")) {
+					getTape().delete(transitionArray.get(i).getExpectedInputString(), getHead().getTapeIndex());
+					getTape().write(transitionArray.get(i).getElementToWrite(), getHead().getTapeIndex());
 					getHead().moveRight(getTape().size());
 				}
 				

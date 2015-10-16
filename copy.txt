@@ -1,0 +1,32 @@
+s a b c e f g i j
+0 1
+0 1 A B #
+s
+#
+j
+s 1 a A R
+s 0 e B R
+s # i # L
+a 0 a 0 R
+a 1 a 1 R
+a # b # R
+b 0 b 0 R
+b 1 b 1 R
+b # c 1 L
+c # c # L
+c 1 c 1 L
+c 0 c 0 L
+c A s 1 R
+e 0 e 0 R
+e 1 e 1 R
+e # f # R
+f 0 f 0 R
+f 1 f 1 R
+f # g 0 L
+g 0 g 0 L
+g 1 g 1 L
+g # g # L
+g B s 0 R
+i 0 i 0 L
+i 1 i 1 L
+i # j # R
